@@ -1,9 +1,13 @@
-import { useStyleConfig, chakra, type ButtonProps } from "@chakra-ui/react";
+import {
+  useStyleConfig,
+  Button as ChakraButton,
+  type ButtonProps,
+} from "@chakra-ui/react";
 
 const Button = (props: ButtonProps) => {
   const styles = useStyleConfig("base_button");
 
-  return <chakra.button __css={styles} {...props} />;
+  return <ChakraButton __css={styles} {...props} />;
 };
 
 export { Button };
