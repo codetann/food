@@ -6,7 +6,11 @@ import { JoinSocket } from "sockets";
 
 const app: express.Application = express();
 const server = http.createServer(app);
-const io: Server = new Server(server);
+const io: Server = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
 initSockets(io, [JoinSocket]);
 
