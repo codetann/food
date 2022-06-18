@@ -21,7 +21,8 @@
       "@components": ["./src/components"],
       "@features": ["./src/features"],
       "@routes": ["./src/routes"],
-      "@socket": ["./src/socket"]
+      "@socket": ["./src/socket"],
+      "@types": ["./src/typings"]
     }
   },
   "include": ["src"],

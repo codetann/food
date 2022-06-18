@@ -1,13 +1,13 @@
 import create from "zustand";
 
 interface State {
-  room: string | null;
-  setRoom: (room: string) => void;
+  code: string | null;
+  setCode: (code: string) => void;
 }
 
 const useStore = create<State>((set) => ({
-  room: null,
-  setRoom: (room: string) => set(() => ({ room })),
+  code: null,
+  setCode: (code: string) => set(() => ({ code })),
 }));
 
 export { useStore };

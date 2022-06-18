@@ -7,13 +7,13 @@ import { useSocket } from "src/sockets";
 import { useStore } from "src/store";
 
 const JoinPage = () => {
-  const room = useStore((state) => state.room);
+  const code = useStore((state) => state.code);
   const [pin, setPin] = useState("");
   const { socket } = useSocket();
 
   useEffect(() => {
-    if (room) console.log("room", room);
-  }, [room]);
+    if (code) console.log("code", code);
+  }, [code]);
 
   const handleJoin = () => socket.check_room(pin);
 
