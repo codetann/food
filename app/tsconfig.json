@@ -18,7 +18,8 @@
     "baseUrl": ".",
     "paths": {
       "@theme": ["./src/theme"],
-      "@components": ["./src/components"]
+      "@components": ["./src/components"],
+      "@features*": ["./src/features/*"]
     }
   },
   "include": ["src"],
