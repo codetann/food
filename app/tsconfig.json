@@ -20,7 +20,8 @@
       "@theme": ["./src/theme"],
       "@components": ["./src/components"],
       "@features": ["./src/features"],
-      "@routes": ["./src/routes"]
+      "@routes": ["./src/routes"],
+      "@socket": ["./src/socket"]
     }
   },
   "include": ["src"],

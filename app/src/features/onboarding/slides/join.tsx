@@ -1,11 +1,21 @@
 // import { PinInput } from "@components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, PinInput } from "@components";
 import { Heading, HStack, PinInput as Inputs, Text } from "@chakra-ui/react";
 import { Slide } from "./slide";
+import { useSocket } from "src/sockets";
+import { useStore } from "src/store";
 
 const JoinSlide = () => {
+  const room = useStore((state) => state.room);
   const [pin, setPin] = useState("");
+  const { socket } = useSocket();
+
+  useEffect(() => {
+    if (room) console.log("room", room);
+  }, [room]);
+
+  const handleJoin = () => socket.check_room(pin);
 
   return (
     <Slide>
@@ -22,7 +32,7 @@ const JoinSlide = () => {
           <PinInput />
         </Inputs>
       </HStack>
-      <Button isDisabled={pin.length < 4} w="15rem">
+      <Button isDisabled={pin.length < 4} w="16rem" onClick={handleJoin}>
         Join
       </Button>
     </Slide>

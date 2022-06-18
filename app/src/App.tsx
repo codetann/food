@@ -1,15 +1,14 @@
-import { useState } from "react";
-import { Button } from "@components";
-import { BrowserRouter as AppRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Routes } from "@routes";
+import { SocketProvider } from "src/sockets";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <AppRouter>
-      <Routes />
-    </AppRouter>
+    <SocketProvider>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </SocketProvider>
   );
 }
 
