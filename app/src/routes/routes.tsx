@@ -1,4 +1,4 @@
-import { Onboarding } from "@features";
+import { JoinPage, LandingPage } from "@features";
 import { Routes as Router, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
@@ -8,7 +8,8 @@ const Routes = () => {
   return (
     <AnimatePresence exitBeforeEnter>
       <Router location={location} key={location.pathname}>
-        <Route path="/" element={<Onboarding />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/join" element={<JoinPage />} />
       </Router>
     </AnimatePresence>
   );
