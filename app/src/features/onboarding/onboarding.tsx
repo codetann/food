@@ -3,6 +3,7 @@ import { Button, Page } from "@components";
 import { LandingSlide } from "./slides/landing";
 import { JoinSlide } from "./slides/join";
 import { AnimatePresence } from "framer-motion";
+import { NavBar } from "./navbar";
 
 const slides = [LandingSlide, JoinSlide];
 
@@ -11,10 +12,8 @@ const Onboarding = () => {
 
   return (
     <Page>
+      <NavBar prevSlide={controller.prevSlide} show={controller.index > 0} />
       <AnimatePresence initial={false}>
-        {controller.index > 0 && (
-          <Button onClick={controller.prevSlide}>Back</Button>
-        )}
         <controller.slide
           key={controller.index}
           nextSlide={controller.nextSlide}
