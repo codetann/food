@@ -166,6 +166,12 @@ const colors = {
   },
   base: {
     primary: "#6c5dd3",
+    input: {
+      dark: "#20233c",
+    },
+    border: {
+      dark: "#36384e",
+    },
     alt: {
       dark: "#20233C",
     },
