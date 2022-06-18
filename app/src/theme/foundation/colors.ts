@@ -165,6 +165,10 @@ const colors = {
     "off-black": "#14142b",
   },
   base: {
+    primary: "#6c5dd3",
+    alt: {
+      dark: "#20233C",
+    },
     bg: {
       light: "#ffffff",
       dark: "#01040d",

@@ -4,8 +4,14 @@ import {
   type ButtonProps,
 } from "@chakra-ui/react";
 
-const Button = (props: ButtonProps) => {
-  const styles = useStyleConfig("base_button");
+interface Button extends ButtonProps {
+  variant?: "primary" | "secondary" | "tertiary";
+}
+
+const Button = (props: Button) => {
+  const styles = useStyleConfig("base_button", {
+    variant: props?.variant || "primary",
+  });
 
   return <ChakraButton __css={styles} {...props} />;
 };

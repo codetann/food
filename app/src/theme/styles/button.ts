@@ -5,7 +5,7 @@ const base_button: StyleConfig = {
     padding: ".8rem 2rem",
     rounded: "lg",
     color: "white",
-    bg: "primary.default",
+    bg: "base.primary",
     transition: "all .2s",
     fontWeight: 500,
 
@@ -19,7 +19,12 @@ const base_button: StyleConfig = {
       transform: "scale(0.99)",
     },
   },
-  variants: {},
+  variants: {
+    secondary: {
+      bg: "base.alt.dark",
+      color: "primary.darkmode",
+    },
+  },
   sizes: {},
   defaultProps: {},
 };
