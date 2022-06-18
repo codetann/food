@@ -19,7 +19,8 @@
     "paths": {
       "@theme": ["./src/theme"],
       "@components": ["./src/components"],
-      "@features*": ["./src/features/*"]
+      "@features": ["./src/features"],
+      "@routes": ["./src/routes"]
     }
   },
   "include": ["src"],

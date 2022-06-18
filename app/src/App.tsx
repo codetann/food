@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Button } from "@components";
+import { BrowserRouter as AppRouter } from "react-router-dom";
+import { Routes } from "@routes";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div style={{ width: "100%" }}>
-      <Button width="20rem">Click Me</Button>
-    </div>
+    <AppRouter>
+      <Routes />
+    </AppRouter>
   );
 }
 
