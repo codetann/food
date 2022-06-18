@@ -11,12 +11,12 @@ const useSocketController = () => {
   const toast = useToast();
 
   useEffect(() => {
-    io.on("check-room", on.check_room);
+    io.on("check-code", on.check_code);
     io.on("error", on.error);
   }, []);
 
   const on = {
-    check_room: (payload: Payload["check_code"]) => {
+    check_code: (payload: Payload["check_code"]) => {
       const { code } = payload;
       if (code) store.setCode(code);
     },
