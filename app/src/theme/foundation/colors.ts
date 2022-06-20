@@ -177,7 +177,7 @@ const colors = {
     },
     bg: {
       light: "#ffffff",
-      dark: "#01040d",
+      dark: "#12142d",
     },
   },
 };

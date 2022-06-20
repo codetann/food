@@ -1,2 +1,2 @@
 export * from "./join.socket";
-export * from "./socket";
+export * from "./user.socket";

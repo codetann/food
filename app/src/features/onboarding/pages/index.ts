@@ -1,4 +1,4 @@
-export * from "./join";
-export * from "./landing";
-export * from "./join-details";
+export * from "./join/join";
+export * from "./join/landing";
+export * from "./join/join-details";
 export * from "./waiting";

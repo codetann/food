@@ -1,4 +1,3 @@
-// import { PinInput } from "@components";
 import { useEffect, useState } from "react";
 import { Button, Page, PinInput } from "@components";
 import { Heading, HStack, PinInput as Inputs, Text } from "@chakra-ui/react";

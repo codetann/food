@@ -31,7 +31,7 @@ const base_button: StyleConfig = {
   },
   variants: {
     secondary: {
-      bg: "base.alt.dark",
+      bg: "whiteAlpha.50",
       color: "primary.darkmode",
     },
   },
