@@ -37,11 +37,16 @@ class JoinSocket {
   };
 
   join = ({ name, code }: Member) => {
+    userList.push({ name, code });
+    console.log(userList);
+
     const users = userList.filter((user) => user.code === code);
 
-    this.io.in(code).emit("join", { users: [...users, { name, code }] });
+    this.io.to(code).emit("join", { users });
+  };
 
-    userList.push({ name, code });
+  disconnect = () => {
+    this.socket.disconnect();
   };
 }
 

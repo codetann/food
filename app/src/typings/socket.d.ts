@@ -4,13 +4,20 @@ interface Member {
 }
 
 export interface Payload {
-  ["check-code"]: {
+  ["on:check"]: {
     code: string;
   };
-  ["join"]: {
+  ["on:join"]: {
     users: Member[];
   };
-  ["error"]: {
+  ["on:error"]: {
     message: string;
+  };
+  ["emit:check"]: {
+    code: string;
+  };
+  ["emit:join"]: {
+    name: string;
+    code: string;
   };
 }

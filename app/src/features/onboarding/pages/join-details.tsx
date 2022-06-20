@@ -15,7 +15,7 @@ function JoinDetailsPage() {
   }, []);
 
   const handleClick = () => {
-    socket.join(code, name);
+    socket.join({ name, code });
     navigate("/waiting");
   };
 

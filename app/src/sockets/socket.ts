@@ -6,15 +6,30 @@ import type { Payload } from "@types";
 
 const io = socketio("http://localhost:4000");
 
-const useController = (store: State, toast: any) => {
-  const onCheckCode = ({ code }: Payload["check-code"]) => {
-    if (code) store.setCode(code);
+class Controller {
+  store: State;
+  toast: ReturnType<typeof useToast>;
+
+  constructor(store: State, toast: ReturnType<typeof useToast>) {
+    this.store = store;
+    this.toast = toast;
+
+    io.on("check", this.onCheck.bind(this));
+    io.on("join", this.onJoin.bind(this));
+    io.on("error", this.onError.bind(this));
+  }
+
+  // socket listeners
+  onCheck = ({ code }: Payload["on:check"]) => {
+    if (code) this.store.setCode(code);
   };
-  const onJoin = ({ users }: Payload["join"]) => {
-    store.setUsers(users.map((user) => user.name));
+
+  onJoin = ({ users }: Payload["on:join"]) => {
+    this.store.setUsers(users.map((user) => user.name));
   };
-  const onError = ({ message }: Payload["error"]) => {
-    toast({
+
+  onError = ({ message }: Payload["on:error"]) => {
+    this.toast({
       title: "Error",
       status: "error",
       description: message,
@@ -22,36 +37,25 @@ const useController = (store: State, toast: any) => {
     });
   };
 
-  const emitCheckCode = (code: string) => {
-    io.emit("check-code", code);
-  };
-  const emitJoin = (name: string, code: string) => {
-    io.emit("join", { name, code });
+  // socket emitters
+  check = ({ code }: Payload["emit:check"]) => {
+    io.emit("check", { code });
   };
 
-  return {
-    onCheckCode,
-    onJoin,
-    onError,
-    emitCheckCode,
-    emitJoin,
+  join = ({ name, code }: Payload["emit:join"]) => {
+    io.emit("join", { name, code });
   };
-};
+}
 
 const useSocketController = () => {
   const store = useStore();
   const toast = useToast();
-  const controller = useController(store, toast);
-
-  useEffect(() => {
-    io.on("check-code", controller.onCheckCode);
-    io.on("join", controller.onJoin);
-    io.on("error", controller.onError);
-  }, []);
+  const controller = new Controller(store, toast);
+  // const controller = useController(store, toast);
 
   return {
-    checkCode: controller.emitCheckCode,
-    join: controller.emitJoin,
+    check: controller.check,
+    join: controller.join,
   };
 };
 
