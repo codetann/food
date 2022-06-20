@@ -1,7 +1,8 @@
 import { useStore } from "@store";
-import { Page } from "@components";
+import { Page, User } from "@components";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { VStack } from "@chakra-ui/react";
 
 function WaitingPage() {
   const store = useStore();
@@ -13,12 +14,12 @@ function WaitingPage() {
 
   return (
     <Page>
-      <h1>Waiting for people to join...</h1>
-      {store.users.map((user) => (
-        <div key={user}>
-          <h2>{user}</h2>
-        </div>
-      ))}
+      <VStack w="100%" maxW="lg">
+        <h1>Waiting for people to join...</h1>
+        {store.users.map((user) => (
+          <User name={user} />
+        ))}
+      </VStack>
     </Page>
   );
 }

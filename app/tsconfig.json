@@ -23,7 +23,8 @@
       "@routes": ["./src/routes"],
       "@socket": ["./src/socket"],
       "@types": ["./src/typings"],
-      "@store": ["./src/store"]
+      "@store": ["./src/store"],
+      "@utils": ["./src/utils"]
     }
   },
   "include": ["src"],
