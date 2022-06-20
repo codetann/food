@@ -5,17 +5,19 @@ import { Heading, HStack, PinInput as Inputs, Text } from "@chakra-ui/react";
 
 import { useSocket } from "src/sockets";
 import { useStore } from "src/store";
+import { useNavigate } from "react-router-dom";
 
 const JoinPage = () => {
   const code = useStore((state) => state.code);
   const [pin, setPin] = useState("");
   const { socket } = useSocket();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (code) console.log("code", code);
+    if (code) navigate("/join/details");
   }, [code]);
 
-  const handleJoin = () => socket.check_room(pin);
+  const handleCode = () => socket.check_code(pin);
 
   return (
     <Page>
@@ -32,7 +34,7 @@ const JoinPage = () => {
           <PinInput />
         </Inputs>
       </HStack>
-      <Button isDisabled={pin.length < 4} w="16rem" onClick={handleJoin}>
+      <Button isDisabled={pin.length < 4} w="16rem" onClick={handleCode}>
         Join
       </Button>
     </Page>

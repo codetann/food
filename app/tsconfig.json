@@ -22,7 +22,8 @@
       "@features": ["./src/features"],
       "@routes": ["./src/routes"],
       "@socket": ["./src/socket"],
-      "@types": ["./src/typings"]
+      "@types": ["./src/typings"],
+      "@store": ["./src/store"]
     }
   },
   "include": ["src"],

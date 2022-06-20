@@ -1,5 +1,5 @@
 export interface Payload {
-  ["check_code"]: {
+  ["check-code"]: {
     code: string;
   };
 }

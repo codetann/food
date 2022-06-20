@@ -16,7 +16,7 @@ const useSocketController = () => {
   }, []);
 
   const on = {
-    check_code: (payload: Payload["check_code"]) => {
+    check_code: (payload: Payload["check-code"]) => {
       const { code } = payload;
       if (code) store.setCode(code);
     },
@@ -31,8 +31,8 @@ const useSocketController = () => {
   };
 
   const emit = {
-    check_room: (room: string) => {
-      io.emit("check-room", room);
+    check_code: (code: string) => {
+      io.emit("check-code", code);
     },
   };
 

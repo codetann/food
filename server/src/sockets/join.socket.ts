@@ -1,6 +1,6 @@
 import { Server, Socket } from "socket.io";
 
-const rooms: string[] = ["0000"];
+const codes: string[] = ["0000"];
 
 class JoinSocket {
   io: Server;
@@ -10,14 +10,14 @@ class JoinSocket {
     this.io = io;
     this.socket = socket;
 
-    socket.on("check-room", this.checkForRoom.bind(this));
+    socket.on("check-code", this.checkCode.bind(this));
   }
 
-  checkForRoom = (room: string) => {
-    if (rooms.includes(room)) {
-      this.socket.emit("check-room", { room });
+  checkCode = (code: string) => {
+    if (codes.includes(code)) {
+      this.socket.emit("check-code", { code });
     } else {
-      this.socket.emit("error", { message: "Could not find room." });
+      this.socket.emit("error", { message: "Invite code was invalid." });
     }
   };
 }
