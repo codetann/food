@@ -1,6 +1,19 @@
 import { Server, Socket } from "socket.io";
 
-const codes: string[] = ["0000"];
+interface Member {
+  name: string;
+  code: string;
+}
+
+interface Payload {
+  ["join"]: {
+    code: string;
+    name: string;
+  };
+}
+
+const codeList: string[] = ["0000"];
+const userList: Member[] = [];
 
 class JoinSocket {
   io: Server;
@@ -11,14 +24,24 @@ class JoinSocket {
     this.socket = socket;
 
     socket.on("check-code", this.checkCode.bind(this));
+    socket.on("join", this.join.bind(this));
   }
 
   checkCode = (code: string) => {
-    if (codes.includes(code)) {
+    if (codeList.includes(code)) {
+      this.socket.join(code);
       this.socket.emit("check-code", { code });
     } else {
       this.socket.emit("error", { message: "Invite code was invalid." });
     }
+  };
+
+  join = ({ name, code }: Member) => {
+    const users = userList.filter((user) => user.code === code);
+
+    this.io.in(code).emit("join", { users: [...users, { name, code }] });
+
+    userList.push({ name, code });
   };
 }
 

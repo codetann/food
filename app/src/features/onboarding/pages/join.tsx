@@ -17,7 +17,7 @@ const JoinPage = () => {
     if (code) navigate("/join/details");
   }, [code]);
 
-  const handleCode = () => socket.check_code(pin);
+  const handleCode = () => socket.checkCode(pin);
 
   return (
     <Page>

@@ -1,42 +1,58 @@
 import { useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import socketio from "socket.io-client";
-import { useStore } from "src/store/store";
-import type { Payload } from "src/typings";
+import { useStore, State } from "@store";
+import type { Payload } from "@types";
 
 const io = socketio("http://localhost:4000");
+
+const useController = (store: State, toast: any) => {
+  const onCheckCode = ({ code }: Payload["check-code"]) => {
+    if (code) store.setCode(code);
+  };
+  const onJoin = ({ users }: Payload["join"]) => {
+    store.setUsers(users.map((user) => user.name));
+  };
+  const onError = ({ message }: Payload["error"]) => {
+    toast({
+      title: "Error",
+      status: "error",
+      description: message,
+      position: "top-right",
+    });
+  };
+
+  const emitCheckCode = (code: string) => {
+    io.emit("check-code", code);
+  };
+  const emitJoin = (name: string, code: string) => {
+    io.emit("join", { name, code });
+  };
+
+  return {
+    onCheckCode,
+    onJoin,
+    onError,
+    emitCheckCode,
+    emitJoin,
+  };
+};
 
 const useSocketController = () => {
   const store = useStore();
   const toast = useToast();
+  const controller = useController(store, toast);
 
   useEffect(() => {
-    io.on("check-code", on.check_code);
-    io.on("error", on.error);
+    io.on("check-code", controller.onCheckCode);
+    io.on("join", controller.onJoin);
+    io.on("error", controller.onError);
   }, []);
 
-  const on = {
-    check_code: (payload: Payload["check-code"]) => {
-      const { code } = payload;
-      if (code) store.setCode(code);
-    },
-    error: (payload: any) => {
-      toast({
-        title: "Error",
-        status: "error",
-        description: payload.message,
-        position: "top-right",
-      });
-    },
+  return {
+    checkCode: controller.emitCheckCode,
+    join: controller.emitJoin,
   };
-
-  const emit = {
-    check_code: (code: string) => {
-      io.emit("check-code", code);
-    },
-  };
-
-  return emit;
 };
 
 export { useSocketController };

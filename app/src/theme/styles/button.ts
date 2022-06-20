@@ -8,7 +8,7 @@ const base_button: StyleConfig = {
     color: "white",
     bg: "base.primary",
     transition: "all .2s",
-    fontWeight: 500,
+    fontSize: "sm",
 
     _disabled: {
       cursor: "not-allowed",
