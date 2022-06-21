@@ -1,8 +1,10 @@
+import { Codes, Users } from "models";
 import { Server, Socket } from "socket.io";
 import { Payload } from "../typings/socket";
 import { State } from "./state";
 
-const state = new State();
+const codes = new Codes();
+const users = new Users();
 
 class UserSocket {
   io: Server;
@@ -26,7 +28,7 @@ class UserSocket {
   }
 
   check = ({ code }: Payload["check"]) => {
-    if (state.checkCode(code)) {
+    if (codes.checkCode(code)) {
       this.code = code;
 
       this.socket.join(code);
@@ -38,8 +40,8 @@ class UserSocket {
   };
 
   create = (/* future params */) => {
-    const code = state.generateCode();
-    state.setCode(code);
+    const code = codes.generateCode();
+    codes.setCode(code);
     this.code = code;
 
     this.socket.join(code);
@@ -47,21 +49,21 @@ class UserSocket {
   };
 
   join = ({ name, code }: Payload["join"]) => {
-    state.addUser({ name, id: this.id, code });
-    this.io.to(code).emit("join", { users: state.getUsers(code) });
+    users.setUser({ name, id: this.id, code });
+    this.io.to(code).emit("join", { users: users.getUsers(code) });
   };
 
   leave = () => {
-    state.removeUser(this.id);
+    users.removeUser(this.id);
 
     this.socket.leave(this.code!);
-    this.io.to(this.code!).emit("leave", { users: state.getUsers(this.code!) });
+    this.io.to(this.code!).emit("leave", { users: users.getUsers(this.code!) });
   };
 
   disconnect = () => {
-    state.removeUser(this.id);
+    users.removeUser(this.id);
 
-    this.io.to(this.code!).emit("leave", { users: state.getUsers(this.code!) });
+    this.io.to(this.code!).emit("leave", { users: users.getUsers(this.code!) });
     this.socket.leave(this.code!);
     this.socket.disconnect();
   };
