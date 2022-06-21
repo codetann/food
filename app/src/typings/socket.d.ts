@@ -10,6 +10,9 @@ export interface Payload {
   ["on:join"]: {
     users: Member[];
   };
+  ["on:create"]: {
+    code: string;
+  };
   ["on:error"]: {
     message: string;
   };

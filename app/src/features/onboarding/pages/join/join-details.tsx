@@ -12,6 +12,7 @@ function JoinDetailsPage() {
 
   useEffect(() => {
     if (!code) navigate("/join");
+    if (name && code) navigate("/waiting");
   }, []);
 
   const handleClick = () => {

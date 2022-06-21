@@ -7,6 +7,7 @@ export interface State {
   setUsers: (users: string[]) => void;
   setName: (name: string) => void;
   setCode: (code: string) => void;
+  clear: () => void;
 }
 
 const useStore = create<State>((set) => ({
@@ -16,6 +17,9 @@ const useStore = create<State>((set) => ({
   setUsers: (users: string[]) => set((state) => ({ ...state, users })),
   setName: (name) => set((state) => ({ ...state, name })),
   setCode: (code: string) => set((state) => ({ ...state, code })),
+  clear: () => {
+    set((state) => ({ ...state, code: null, name: null, users: [] }));
+  },
 }));
 
 export { useStore };
