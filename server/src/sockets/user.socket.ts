@@ -1,7 +1,6 @@
 import { Codes, Users } from "models";
 import { Server, Socket } from "socket.io";
 import { Payload } from "../typings/socket";
-import { State } from "./state";
 
 const codes = new Codes();
 const users = new Users();
@@ -66,6 +65,8 @@ class UserSocket {
     this.io.to(this.code!).emit("leave", { users: users.getUsers(this.code!) });
     this.socket.leave(this.code!);
     this.socket.disconnect();
+
+    // TODO : Remove code from codes.
   };
 }
 
