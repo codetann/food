@@ -24,7 +24,8 @@
       "@socket": ["./src/socket"],
       "@types": ["./src/typings"],
       "@store": ["./src/store"],
-      "@utils": ["./src/utils"]
+      "@utils": ["./src/utils"],
+      "@assets": ["./assets"]
     }
   },
   "include": ["src"],

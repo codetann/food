@@ -5,6 +5,7 @@ import { Heading, HStack, PinInput as Inputs, Text } from "@chakra-ui/react";
 import { useSocket } from "src/sockets";
 import { useStore } from "src/store";
 import { useNavigate } from "react-router-dom";
+import { NavBar } from "../../navbar";
 
 const JoinPage = () => {
   const code = useStore((state) => state.code);
@@ -20,6 +21,7 @@ const JoinPage = () => {
 
   return (
     <Page>
+      <NavBar />
       <Heading>Enter Code</Heading>
       <Text maxW="xl" textAlign="center" pt="1rem" color="whiteAlpha.700">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos

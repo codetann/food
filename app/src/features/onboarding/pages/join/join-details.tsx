@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "@store";
 import { Heading, VStack } from "@chakra-ui/react";
 import { useSocket } from "src/sockets";
+import { NavBar } from "../../navbar";
 
 function JoinDetailsPage() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ function JoinDetailsPage() {
 
   return (
     <Page>
+      <NavBar />
       <Heading pb="2rem">Enter Your Name</Heading>
 
       <VStack spacing={5} w="100%">
