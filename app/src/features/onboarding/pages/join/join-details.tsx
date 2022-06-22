@@ -16,7 +16,8 @@ function JoinDetailsPage() {
     if (name && code) navigate("/waiting");
   }, []);
 
-  const handleClick = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     socket.join({ name, code });
     navigate("/waiting");
   };
@@ -29,13 +30,14 @@ function JoinDetailsPage() {
     <Page>
       <NavBar />
       <Heading pb="2rem">Enter Your Name</Heading>
-
-      <VStack spacing={5} w="100%">
-        <Input w="20rem" onChange={handleChange} placeholder="Name" />
-        <Button disabled={!name} w="20rem" onClick={handleClick}>
-          Continue
-        </Button>
-      </VStack>
+      <form onSubmit={handleSubmit}>
+        <VStack spacing={5} w="100%">
+          <Input w="20rem" onChange={handleChange} placeholder="Name" />
+          <Button disabled={!name} w="20rem" type="submit">
+            Continue
+          </Button>
+        </VStack>
+      </form>
     </Page>
   );
 }

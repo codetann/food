@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Page, PinInput } from "@components";
-import { Heading, HStack, PinInput as Inputs, Text } from "@chakra-ui/react";
+import {
+  Heading,
+  HStack,
+  PinInput as Inputs,
+  Text,
+  chakra,
+} from "@chakra-ui/react";
 
 import { useSocket } from "src/sockets";
 import { useStore } from "src/store";
@@ -17,7 +23,10 @@ const JoinPage = () => {
     if (code) navigate("/join/details");
   }, [code]);
 
-  const handleCode = () => socket.check({ code: pin });
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    socket.check({ code: pin });
+  };
 
   return (
     <Page>
@@ -27,17 +36,25 @@ const JoinPage = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
         atque non est quae laboriosam harum rem?
       </Text>
-      <HStack py="4rem">
-        <Inputs onChange={(value) => setPin(value)}>
-          <PinInput />
-          <PinInput />
-          <PinInput />
-          <PinInput />
-        </Inputs>
-      </HStack>
-      <Button isDisabled={pin.length < 4} w="16rem" onClick={handleCode}>
-        Join
-      </Button>
+      <chakra.form
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        onSubmit={handleSubmit}
+      >
+        <HStack py="4rem">
+          <Inputs onChange={(value) => setPin(value)}>
+            <PinInput />
+            <PinInput />
+            <PinInput />
+            <PinInput />
+          </Inputs>
+        </HStack>
+        <Button isDisabled={pin.length < 4} w="16rem">
+          Join
+        </Button>
+      </chakra.form>
     </Page>
   );
 };
