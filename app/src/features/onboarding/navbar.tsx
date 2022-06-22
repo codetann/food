@@ -12,11 +12,9 @@ const NavBar = () => {
   const onBack = () => {
     switch (location.pathname) {
       case "/join": {
-        console.log("back to home");
         navigate("/");
       }
       case "/join/details": {
-        console.log("back to join");
         state.clear();
         navigate("/join");
       }
