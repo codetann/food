@@ -51,7 +51,7 @@ const JoinPage = () => {
             <PinInput />
           </Inputs>
         </HStack>
-        <Button isDisabled={pin.length < 4} w="16rem">
+        <Button isDisabled={pin.length < 4} w="16rem" type="submit">
           Join
         </Button>
       </chakra.form>
