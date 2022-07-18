@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "@store";
 import { Heading, VStack } from "@chakra-ui/react";
 import { useSocket } from "src/sockets";
-import { NavBar } from "../../navbar";
+import { NavBar } from "../navbar";
 
 function JoinDetailsPage() {
   const navigate = useNavigate();

@@ -4,12 +4,15 @@ import { motion } from "framer-motion";
 const variants = {
   enter: {
     opacity: 0,
+    y: -50,
   },
   animate: {
     opacity: 1,
+    y: 0,
   },
   exit: {
     opacity: 0,
+    y: 50,
   },
 };
 
@@ -21,7 +24,10 @@ const Page = (props: StackProps) => {
       initial="enter"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.2 }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+      }}
       style={{ overflow: "hidden" }}
     >
       <VStack __css={styles} {...props} />
