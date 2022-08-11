@@ -32,4 +32,4 @@ const Page = (props: StackProps) => {
   );
 };
 
-export { Page };
+export default Page;

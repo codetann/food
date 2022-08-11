@@ -23,4 +23,4 @@ const PinInput = (props: InputProps) => {
   );
 };
 
-export { PinInput };
+export default PinInput;

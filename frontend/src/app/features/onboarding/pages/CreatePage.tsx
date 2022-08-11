@@ -3,7 +3,7 @@ import { useSocket } from "src/sockets";
 import { useStore } from "src/store";
 import { useNavigate } from "react-router-dom";
 import { Heading } from "@chakra-ui/react";
-import { NavBar } from "../navbar";
+import { NavBar } from "../components";
 
 const CreatePage = () => {
   const state = useStore();
@@ -24,4 +24,4 @@ const CreatePage = () => {
   );
 };
 
-export { CreatePage };
+export default CreatePage;

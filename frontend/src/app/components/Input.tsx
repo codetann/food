@@ -5,4 +5,4 @@ const Input = (props: InputProps) => {
   return <chakra.input __css={styles} {...(props as any)} />;
 };
 
-export { Input };
+export default Input;

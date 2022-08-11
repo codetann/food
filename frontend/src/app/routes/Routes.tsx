@@ -1,4 +1,4 @@
-import { OnboardingRoutes } from "@features";
+import { OnboardingRoutes, LandingPage } from "@features";
 import { Routes as Router, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
@@ -8,10 +8,11 @@ const Routes = () => {
   return (
     <AnimatePresence exitBeforeEnter>
       <Router location={location} key={location.pathname}>
-        <Route path="/*" element={<OnboardingRoutes />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/onboarding/*" element={<OnboardingRoutes />} />
       </Router>
     </AnimatePresence>
   );
 };
 
-export { Routes };
+export default Routes;

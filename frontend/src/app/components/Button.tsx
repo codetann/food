@@ -16,4 +16,4 @@ const Button = (props: Button) => {
   return <ChakraButton __css={styles} {...props} />;
 };
 
-export { Button };
+export default Button;

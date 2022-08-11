@@ -35,4 +35,4 @@ function WaitingPage() {
   );
 }
 
-export { WaitingPage };
+export default WaitingPage;

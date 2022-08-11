@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "@store";
 import { Heading, VStack } from "@chakra-ui/react";
 import { useSocket } from "src/sockets";
-import { NavBar } from "../navbar";
+import { NavBar } from "../components";
 
-function JoinDetailsPage() {
+function DetailsPage() {
   const navigate = useNavigate();
   const { socket } = useSocket();
   const { code, name, setName } = useStore((state) => state);
@@ -42,4 +42,4 @@ function JoinDetailsPage() {
   );
 }
 
-export { JoinDetailsPage };
+export default DetailsPage;

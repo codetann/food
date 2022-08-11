@@ -11,7 +11,7 @@ import {
 import { useSocket } from "src/sockets";
 import { useStore } from "src/store";
 import { useNavigate } from "react-router-dom";
-import { NavBar } from "../navbar";
+import { NavBar } from "../components";
 
 const JoinPage = () => {
   const code = useStore((state) => state.code);
@@ -59,4 +59,4 @@ const JoinPage = () => {
   );
 };
 
-export { JoinPage };
+export default JoinPage;
